@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDFMagic - Online PDF Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+        
+        .logo span {
+            color: #4dabf7;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2b2d42;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tool-card i {
+            font-size: 2rem;
+            color: #4dabf7;
+            margin-bottom: 15px;
+        }
+        
+        .tool-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .tool-card p {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        /* Tool UI Sections (Hidden by Default) */
+        .tool-ui {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        
+        .tool-ui.active {
+            display: block;
+        }
+        
+        .upload-area {
+            border: 2px dashed #adb5bd;
+            border-radius: 8px;
+            padding: 40px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .upload-area:hover {
+            background: #f8f9fa;
+        }
+        
+        .upload-area i {
+            font-size: 3rem;
+            color: #adb5bd;
+            margin-bottom: 15px;
+        }
+        
+        .upload-area p {
+            color: #6c757d;
+        }
+        
+        .btn {
+            background: #4dabf7;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #339af0;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 50px;
+            color: #6c757d;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">PDF<span>Magic</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Tools</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Your Free Online PDF Toolbox</h1>
+            <p>Merge, split, compress, convert, and edit PDFs with ease. No installation required!</p>
+        </section>
+        
+        <!-- Tools Grid -->
+        <div class="tools-grid">
+            <div class="tool-card" data-tool="merge">
+                <i class="fas fa-file-pdf"></i>
+                <h3>Merge PDF</h3>
+                <p>Combine multiple PDFs into one</p>
+            </div>
+            <div class="tool-card" data-tool="split">
+                <i class="fas fa-cut"></i>
+                <h3>Split PDF</h3>
+                <p>Divide a PDF into multiple files</p>
+            </div>
+            <div class="tool-card" data-tool="compress">
+                <i class="fas fa-compress-alt"></i>
+                <h3>Compress PDF</h3>
+                <p>Reduce PDF file size</p>
+            </div>
+            <div class="tool-card" data-tool="convert">
+                <i class="fas fa-exchange-alt"></i>
+                <h3>Convert PDF</h3>
+                <p>To Word, Excel, JPG, etc.</p>
+            </div>
+            <div class="tool-card" data-tool="edit">
+                <i class="fas fa-edit"></i>
+                <h3>Edit PDF</h3>
+                <p>Add text, images, and more</p>
+            </div>
+            <div class="tool-card" data-tool="protect">
+                <i class="fas fa-lock"></i>
+                <h3>Protect PDF</h3>
+                <p>Add passwords & permissions</p>
+            </div>
+        </div>
+        
+        <!-- Merge PDF UI (Default Active) -->
+        <div class="tool-ui active" id="merge-ui">
+            <h2>Merge PDF Files</h2>
+            <p>Combine multiple PDFs into a single document</p>
+            
+            <div class="upload-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag & drop your PDF files here or click to browse</p>
+                <input type="file" id="mergeFileInput" style="display: none;" multiple accept=".pdf">
+            </div>
+            
+            <button class="btn" id="mergeBtn">Merge PDFs Now</button>
+        </div>
+        
+        <!-- Split PDF UI -->
+        <div class="tool-ui" id="split-ui">
+            <h2>Split PDF Files</h2>
+            <p>Extract pages or divide a PDF into multiple files</p>
+            
+            <div class="upload-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Upload a PDF to split</p>
+                <input type="file" id="splitFileInput" style="display: none;" accept=".pdf">
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <label for="splitRange">Pages to extract (e.g., 1-3, 5):</label>
+                <input type="text" id="splitRange" placeholder="1-3, 5" style="padding: 8px; width: 100%; max-width: 300px; margin-top: 10px;">
+            </div>
+            
+            <button class="btn" id="splitBtn">Split PDF</button>
+        </div>
+        
+        <!-- Compress PDF UI -->
+        <div class="tool-ui" id="compress-ui">
+            <h2>Compress PDF Files</h2>
+            <p>Reduce PDF file size without losing quality</p>
+            
+            <div class="upload-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Upload a PDF to compress</p>
+                <input type="file" id="compressFileInput" style="display: none;" accept=".pdf">
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <label for="compressionLevel">Compression Level:</label>
+                <select id="compressionLevel" style="padding: 8px; margin-top: 10px;">
+                    <option value="low">Low (Faster)</option>
+                    <option value="medium" selected>Medium (Balanced)</option>
+                    <option value="high">High (Smaller File)</option>
+                </select>
+            </div>
+            
+            <button class="btn" id="compressBtn">Compress PDF</button>
+        </div>
+        
+        <!-- Convert PDF UI -->
+        <div class="tool-ui" id="convert-ui">
+            <h2>Convert PDF</h2>
+            <p>Convert PDF to Word, Excel, JPG, or other formats</p>
+            
+            <div class="upload-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Upload a PDF to convert</p>
+                <input type="file" id="convertFileInput" style="display: none;" accept=".pdf">
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <label for="convertFormat">Output Format:</label>
+                <select id="convertFormat" style="padding: 8px; margin-top: 10px;">
+                    <option value="word">Word (.docx)</option>
+                    <option value="excel">Excel (.xlsx)</option>
+                    <option value="jpg">JPG Image</option>
+                    <option value="png">PNG Image</option>
+                </select>
+            </div>
+            
+            <button class="btn" id="convertBtn">Convert PDF</button>
+        </div>
+        
+        <!-- Edit PDF UI -->
+        <div class="tool-ui" id="edit-ui">
+            <h2>Edit PDF</h2>
+            <p>Add text, images, or annotations to your PDF</p>
+            
+            <div class="upload-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Upload a PDF to edit</p>
+                <input type="file" id="editFileInput" style="display: none;" accept=".pdf">
+            </div>
+            
+            <button class="btn" id="editBtn">Edit PDF</button>
+        </div>
+        
+        <!-- Protect PDF UI -->
+        <div class="tool-ui" id="protect-ui">
+            <h2>Protect PDF</h2>
+            <p>Add passwords or permissions to your PDF</p>
+            
+            <div class="upload-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Upload a PDF to protect</p>
+                <input type="file" id="protectFileInput" style="display: none;" accept=".pdf">
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter password" style="padding: 8px; width: 100%; max-width: 300px; margin-top: 10px;">
+            </div>
+            
+            <button class="btn" id="protectBtn">Protect PDF</button>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 PDFMagic. All rights reserved.</p>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Switch between tool UIs
+        const toolCards = document.querySelectorAll('.tool-card');
+        const toolUIs = document.querySelectorAll('.tool-ui');
+        
+        toolCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const toolName = card.getAttribute('data-tool');
+                
+                // Hide all UIs
+                toolUIs.forEach(ui => ui.classList.remove('active'));
+                
+                // Show selected UI
+                document.getElementById(`${toolName}-ui`).classList.add('active');
+            });
+        });
+        
+        // File upload handlers
+        document.querySelectorAll('.upload-area').forEach(area => {
+            area.addEventListener('click', (e) => {
+                const toolId = area.closest('.tool-ui').id.replace('-ui', '');
+                document.getElementById(`${toolId}FileInput`).click();
+            });
+        });
+        
+        // Tool buttons (simulate processing)
+        document.getElementById('mergeBtn').addEventListener('click', () => {
+            alert('Merge PDF functionality would run here!');
+        });
+        
+        document.getElementById('splitBtn').addEventListener('click', () => {
+            const pages = document.getElementById('splitRange').value;
+            alert(`Split PDF by pages: ${pages}`);
+        });
+        
+        document.getElementById('compressBtn').addEventListener('click', () => {
+            const level = document.getElementById('compressionLevel').value;
+            alert(`Compress PDF with level: ${level}`);
+        });
+        
+        document.getElementById('convertBtn').addEventListener('click', () => {
+            const format = document.getElementById('convertFormat').value;
+            alert(`Convert PDF to ${format.toUpperCase()} functionality would run here!`);
+        });
+        
+        document.getElementById('editBtn').addEventListener('click', () => {
+            alert('Edit PDF functionality would run here!');
+        });
+        
+        document.getElementById('protectBtn').addEventListener('click', () => {
+            const password = document.getElementById('password').value;
+            alert(`Protect PDF with password: ${password || 'None'}`);
+        });
+    </script>
+</body>
+</html>
